@@ -8,6 +8,9 @@ def transform_column(df, target_column):
     pivoted_df = df.pivot(index=['ATCo', 'Display'], columns='Scenario', values=target_column)
     
     pivoted_df = pivoted_df.reset_index()
+
+    if 'ATCo' in pivoted_df.columns:
+        pivoted_df = pivoted_df.drop(columns=['ATCo'])
     pivoted_df.columns.name = None 
     pivoted_df = pivoted_df.rename(columns={'ATCo': 'Participant Number'})
     
@@ -62,12 +65,12 @@ def create_separate_csvs(input_file='DATA2026.xls'):
             print(f"Skipping {new_name}: Source columns not found.")
 
 standard_columns = ['ConflictDetectionTime_s',  'nrHDGClearancesConflict', 'nrSPDClearancesConflict', 
-                       'STCAdurationPrimary_s', 'STCAdurationSecondary_s', 'LosPrimary', 'LosSecondary',
                        'nrHDGClearances', 'nrSPDClearances', 'timeClearanceMenu_s', 'nrLabelDrags', 'nrDisplayTriggers','rsmeWorkload']
 sum_columns = {'TotalMaxHorDeviation_NM': ['maxHorDeviationA_NM', 'maxHorDeviationB_NM'], 'TotalClearancesConflict': ['nrHDGClearancesConflict', 'nrSPDClearancesConflict'],
                'TotalHDGClearances': ['nrHDGClearancesConflict', 'nrHDGClearances'], 'TotalSPDClearances': ['nrSPDClearancesConflict', 'nrSPDClearances'],
                'TotalClearances': ['nrHDGClearancesConflict', 'nrHDGClearances', 'nrSPDClearancesConflict', 'nrSPDClearances'],
-               'TotalDisplayChanges': ['nrLabelDrags', 'nrDisplayTriggers']}
+               'TotalDisplayChanges': ['nrLabelDrags', 'nrDisplayTriggers'], 'TotalLoss': ['LosPrimary', 'LosSecondary'],
+               'TotalSTCA': ['STCAdurationPrimary_s', 'STCAdurationSecondary_s']}
 difference_columns = {'ConflictResolutionTime_s': ['ConflictResolutionTime_s', 'ConflictDetectionTime_s']}
 ratio_columns = {'LateAssumeRatio': ['nrAssumeInsideSector', 'nrAssume'], 'LateTransferRatio': ['nrTransferOutsideSector', 'nrTransfer']}
 
