@@ -65,10 +65,11 @@ for i = 1:4
 end
 
 % 6. Formatting and Aesthetics
+set(gca, 'FontSize', 17);
 xticks([1, 2]);
 xticklabels({'NCW', 'SSD'});
 xlim([0.2, 2.8]);
-ylabel('Conflict Detection Time (s)', 'FontWeight', 'bold');
+ylabel('Conflict Detection Time (s)', 'FontWeight', 'bold', 'FontSize', 17);
 %title('Conflict Detection Time by Display (TLD vs THD)', 'FontWeight', 'bold');
 grid on;
 set(gca, 'GridLineStyle', ':', 'GridAlpha', 0.5);
@@ -77,6 +78,6 @@ set(gca, 'GridLineStyle', ':', 'GridAlpha', 0.5);
 % Since we used patches in a loop, the cleanest way to do a legend is with dummy plots
 h1 = plot(NaN, NaN, 's', 'MarkerFaceColor', color_TLD, 'MarkerEdgeColor', 'none', 'MarkerSize', 10);
 h2 = plot(NaN, NaN, 's', 'MarkerFaceColor', color_THD, 'MarkerEdgeColor', 'none', 'MarkerSize', 10);
-legend([h1, h2], {'TLD (Left)', 'THD (Right)'}, 'Location', 'best');
+legend([h1, h2], {'TLD (Left)', 'THD (Right)'}, 'Location', 'best', 'FontSize', 15);
 
 hold off;

@@ -1,6 +1,6 @@
 % 1. Read the data from the CSV file
-opts = detectImportOptions('ConflictResolutionTime_s.csv');
-data = readtable('ConflictResolutionTime_s.csv', opts);
+opts = detectImportOptions('TotalSTCA.csv');
+data = readtable('TotalSTCA.csv', opts);
 
 % 2. Extract the data into the 4 cases based on 'Display' and variables
 ncw_mask = strcmp(data.Display, 'NCW');
@@ -69,7 +69,7 @@ set(gca, 'FontSize', 17);
 xticks([1, 2]);
 xticklabels({'NCW', 'SSD'});
 xlim([0.2, 2.8]);
-ylabel('Conflict Resolution Time (s)', 'FontWeight', 'bold', 'FontSize', 17);
+ylabel('Total Active STCA Time (s)', 'FontWeight', 'bold', 'FontSize', 17);
 %title('Conflict Detection Time by Display (TLD vs THD)', 'FontWeight', 'bold');
 grid on;
 set(gca, 'GridLineStyle', ':', 'GridAlpha', 0.5);
